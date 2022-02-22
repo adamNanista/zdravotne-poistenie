@@ -44,32 +44,37 @@ var StickyTable = (function () {
 		if (DOM.tables.length) {
 			DOM.tables.forEach((table) => {
 				var tableHeight = table.offsetHeight;
-				var tableOffset = table.getBoundingClientRect();
+				
+				var scroller = table.parentNode;
+				
+				var wrapper = scroller.parentNode;
+				var wrapperOffsetTop = wrapper.offsetTop;
+				var wrapperOffsetLeft = wrapper.offsetLeft;
 				
 				var shadowLeftColHeader = table.parentNode.querySelector('.sticky-table-shadowleftcolheader');
 				var shadowHeader = table.parentNode.querySelector('.sticky-table-shadowheader');
 				
-				var scroller = table.parentNode;
+				
 				
 				window.addEventListener('scroll', function (event) {
 					var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 					
-					if (scrollTop > tableOffset.top && scrollTop < tableOffset.top + tableHeight) {
+					if (scrollTop > wrapperOffsetTop && scrollTop < wrapperOffsetTop + tableHeight) {
 						shadowHeader.classList.add('sticked');
 						shadowLeftColHeader.classList.add('sticked');
-						shadowLeftColHeader.style.left = tableOffset.left + 'px';
+						shadowLeftColHeader.style.left = wrapperOffsetLeft + 'px';
 					} else {
 						shadowHeader.classList.remove('sticked');
 						shadowLeftColHeader.classList.remove('sticked');
 						shadowLeftColHeader.style.left = '';
 					}
-				}, {passive: true});
+				});
 				
 				scroller.addEventListener('scroll', function (event) {
 					var scrollLeft = scroller.scrollLeft;
 					
-					shadowHeader.style.left = tableOffset.left - scrollLeft + 'px';
-				}, {passive: true});
+					shadowHeader.style.left = wrapperOffsetLeft - scrollLeft + 'px';
+				});
 			});
 		}
 	}
