@@ -63,13 +63,13 @@ var StickyTable = (function () {
 						shadowLeftColHeader.classList.remove('sticked');
 						shadowLeftColHeader.style.left = '';
 					}
-				});
+				}, {passive: true});
 				
 				scroller.addEventListener('scroll', function (event) {
 					var scrollLeft = scroller.scrollLeft;
 					
 					shadowHeader.style.left = tableOffset.left - scrollLeft + 'px';
-				});
+				}, {passive: true});
 			});
 		}
 	}
