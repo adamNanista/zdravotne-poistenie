@@ -198,12 +198,16 @@ strong {
   vertical-align: middle;
 }
 
+.table-centered tbody td {
+	text-align: center;
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #c5e1e8;
 }
 
 .table-bordered {
-  border-width: 1px 2px;
+  border-width: 2px;
   border-style: solid;
   border-color: #a8d2dd;
 }
@@ -436,9 +440,15 @@ strong {
 
 /* utilities */
 
+.spacer-b1, 
+.spacer-b1-2 {
+	display: block;
+}
 .spacer-b1 {
-  display: block;
   margin-bottom: 16px;
+}
+.spacer-b1-2 {
+	margin-bottom: 8px;
 }
 
 .text-center {
@@ -451,6 +461,9 @@ strong {
 @media (min-width: 768px) {
   .spacer-b1 {
     margin-bottom: 24px;
+  }
+  .spacer-b1-2 {
+	  margin-bottom: 12px;
   }
 }
 
@@ -504,7 +517,7 @@ strong {
   font-weight: 700;
   line-height: 32px;
   text-decoration: none;
-  white-space: normal;
+  white-space: nowrap;
 
   background-color: #45a93e;
   border-radius: 99999px;
@@ -539,13 +552,15 @@ strong {
 .tooltip {
   cursor: pointer;
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 17px;
+  height: 17px;
   position: relative;
 
   color: #ffffff;
   text-align: center;
   white-space: normal;
+  font-size: 13px;
+  line-height: 17px;
 
   background-color: #0e81a0;
   border-radius: 50%;
@@ -562,7 +577,7 @@ strong {
   position: absolute;
   white-space: nowrap;
   width: 1px;
-  top: 32px;
+  top: 25px;
   left: -16px;
 }
 .tooltip-right .tooltip-content {
@@ -576,13 +591,13 @@ strong {
   height: 0;
   position: absolute;
   top: -8px;
-  left: 24px;
+  left: 20px;
 
   border: 4px solid transparent;
   border-bottom: 4px solid #262626;
 }
 .tooltip-right .tooltip-content:before {
-  right: 24px;
+  right: 20px;
   left: auto;
 }
 .tooltip:hover .tooltip-content,
@@ -596,7 +611,7 @@ strong {
   width: 200px;
 
   padding: 16px;
-  z-index: 1;
+  z-index: 2;
 
   font-size: 15px;
   line-height: 21px;
@@ -616,23 +631,39 @@ strong {
 /* icon-list */
 
 .icon-list {
-  margin-left: 2em;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 
   white-space: normal;
 }
 .icon-list li {
-  position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+			text-align: left;
+  margin: 0;
+  padding: 0;
 }
 .icon-list li + li {
   margin-top: 16px;
 }
 .icon-list-icon {
-  position: absolute;
-  left: -2em;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   width: 2em;
   text-align: center;
-  line-height: inherit;
+}
+.icon-list-text {
+	-ms-flex-item-align: center;
+	    -ms-grid-row-align: center;
+	    align-self: center;
 }
 
 .icon-list-green i {
@@ -643,4 +674,67 @@ strong {
   .icon-list li + li {
     margin-top: 24px;
   }
+}
+
+/* leading list */
+
+.leading-list {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	list-style-type: none;
+	
+	white-space: normal;
+}
+.leading-list li {
+	margin: 0;
+	padding: 0;
+	
+	text-align: left;
+}
+.leading-list li + li {
+	margin-top: 16px;
+}
+.leading-list li:after {
+	float: left;
+	width: 0;
+	white-space: nowrap;
+	content: 
+	". . . . . . . . . . . . . . . . . . . . "
+	". . . . . . . . . . . . . . . . . . . . "
+	". . . . . . . . . . . . . . . . . . . . "
+	". . . . . . . . . . . . . . . . . . . . ";
+	color: #0e81a0;
+	opacity: .5;
+}
+.leading-list .title, 
+.leading-list .value {
+	position: relative;
+	z-index: 1;
+	
+	background-color: #e2f0f3;
+}
+.leading-list .title {
+	padding-right: 4px;
+}
+.leading-list .value {
+	float: right;
+	padding-left: 4px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) .leading-list .title, 
+.table-striped tbody tr:nth-of-type(odd) .leading-list .value {
+	background-color: #c5e1e8;
+}
+
+@media (min-width: 768px) {
+	.leading-list li + li {
+		margin-top: 24px;
+	}
+	.leading-list .title {
+		padding-right: 6px;
+	}
+	.leading-list .value {
+		padding-left: 6px;
+	}
 }

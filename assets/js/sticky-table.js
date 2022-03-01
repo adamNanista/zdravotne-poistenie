@@ -54,8 +54,6 @@ var StickyTable = (function () {
 				var shadowLeftColHeader = table.parentNode.querySelector('.sticky-table-shadowleftcolheader');
 				var shadowHeader = table.parentNode.querySelector('.sticky-table-shadowheader');
 				
-				
-				
 				window.addEventListener('scroll', function (event) {
 					var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 					
